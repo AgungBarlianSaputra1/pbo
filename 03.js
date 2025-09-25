@@ -6,6 +6,6 @@ class Mahasiswa {
     }
 
     public void belajar() {
-        System.out.println(nama + " sedang belajar.");
+        conscole.log(nama + " sedang belajar.");
     }
 }
