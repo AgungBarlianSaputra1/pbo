@@ -10,28 +10,28 @@ class Mahasiswa {
   }
 
   info() {
-    console.log(Nama: ${this.nama}, NIM: ${this.nim}, Jurusan: ${this.jurusan});
+    console.log(`Nama: ${this.nama}, NIM: ${this.nim}, Jurusan: ${this.jurusan}`);
   }
 }
 
 class MahasiswaS1 extends Mahasiswa {
-  ujian() {
-    console.log(this.nama + " sedang ujian skripsi.");
+  tugas() {
+    console.log(this.nama + " sedang mengerjakan tugas.");
   }
 }
 
 class MahasiswaS2 extends Mahasiswa {
-  tugas() {
-    console.log(this.nama + " sedang mengerjakan tugas penelitian.");
+  kelompok() {
+    console.log(this.nama + " sedang mengerjakan tugas kelompok.");
   }
 }
 
-const mhs1 = new Mahasiswa("Ilqi", "12345", "Informatika");
-const mhs2 = new MahasiswaS1("Budi", "67890", "Sistem Informasi");
-const mhs3 = new MahasiswaS2("Sari", "54321", "Teknik Komputer");
+const mhs1 = new Mahasiswa("Agung", "09876", "Informatika");
+const mhs2 = new MahasiswaS1("Barok", "12345", "Informatika");
+const mhs3 = new MahasiswaS2("Iril", "10926", "Informatika");
 
 mhs1.belajar();   // Ilqi sedang belajar.
-mhs1.info();      // Nama: Ilqi, NIM: 12345, Jurusan: Informatika
+mhs1.info();      // Nama: Agung, NIM: 09876, Jurusan: Informatika
 
-mhs2.ujian();     // Budi sedang ujian skripsi.
-mhs3.tugas();     // Sari sedang mengerjakan tugas penelitian.
+mhs2.tugas();     // Budi sedang mengerjakan tugas.
+mhs3.kelompok();     // Sari sedang mengerjakan tugas kelompok.
