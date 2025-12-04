@@ -3,16 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GUI Sederhana</title>
+    <title>GUI Sederhana Gabungan</title>
 </head>
 <body>
-    <h1 id="title">Welcome to mobile legend</h1>
-    <button onclick="ubahTeks()">Masuk</button>
+
+    <!-- Bagian 1: Ubah Teks -->
+    <h1 id="title">Halo, Mahasiswa!</h1>
+    <button onclick="ubahTeks()">Klik Saya</button>
+
+    <hr>
+
+    <!-- Bagian 2: Form Nama -->
+    <h1>Masukkan Nama Anda</h1>
+    <input type="text" id="nameInput" placeholder="Nama Anda">
+    <button onclick="tampilkanNama()">Submit</button>
+    <h2 id="output"></h2>
+
+    <hr>
+
+    <!-- Bagian 3: Gambar -->
+    <h1>Gambar Anda</h1>
+    <!-- MASUKKAN LINK GAMBAR DI SINI pada src="..." -->
+    <img id="myImage" src="file:///C:/Users/hp14i/OneDrive/Pictures/4f71442b-0b45-405e-b981-9077c656e749.jpg" 
+         alt="Gambar Anda" width="200">
+
+    <hr>
 
     <script>
         function ubahTeks() {
-            document.getElementById("title").innerText = "HalbinABS!";
+            document.getElementById("title").innerText = "Teks telah berubah!";
+        }
+
+        function tampilkanNama() {
+            let nama = document.getElementById("nameInput").value;
+            document.getElementById("output").innerText = "Halo, " + nama + "!";
         }
     </script>
+
 </body>
 </html>
