@@ -1,40 +1,29 @@
-// CLASS (Blueprint)
-class Planet {
-    constructor(name, description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    getInfo() {
-        return `${this.name}: ${this.description}`;
+class User {
+    constructor(username, password) {
+        this.username = username;
+        this.password = password;
     }
 }
 
-// OBJECTS (Instance dari class)
-const planets = [
-    new Planet("Mercury", "Planet terdekat dengan matahari."),
-    new Planet("Venus", "Planet terpanas di tata surya."),
-    new Planet("Earth", "Planet tempat kehidupan."),
-    new Planet("Mars", "Planet merah yang misterius.")
+const users = [
+    new User("admin", "Agung"),
+    new User("user", "User")
 ];
 
-let index = 0;
+function login() {
+    const u = document.getElementById("username").value;
+    const p = document.getElementById("password").value;
 
-// Menampilkan data object ke UI
-function showPlanet() {
-    document.getElementById("planetName").innerText = planets[index].name;
-    document.getElementById("planetDesc").innerText = planets[index].description;
-    document.getElementById("info").innerText = planets[index].getInfo();
-}
-
-// Interaksi UX
-function nextPlanet() {
-    index++;
-    if (index >= planets.length) {
-        index = 0;
+    if (!u || !p) {
+        alert("Username dan password wajib diisi");
+        return;
     }
-    showPlanet();
-}
 
-// Load awal
-showPlanet();
+    const valid = users.find(user => user.username === u && user.password === p);
+
+    if (valid) {
+        alert("Login berhasil!");
+    } else {
+        alert("Login gagal!");
+    }
+}
