@@ -1,35 +1,40 @@
-// Data user awal
-if (!localStorage.getItem("users")) {
-    const users = [
-        { username: "admin", password: "12345" },
-        { username: "user", password: "user123" }
-    ];
-    localStorage.setItem("users", JSON.stringify(users));
-}
+// CLASS (Blueprint)
+class Planet {
+    constructor(name, description) {
+        this.name = name;
+        this.description = description;
+    }
 
-function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const message = document.getElementById("message");
-
-    const users = JSON.parse(localStorage.getItem("users"));
-
-    const foundUser = users.find(
-        u => u.username === username && u.password === password
-    );
-
-    if (foundUser) {
-        message.style.color = "green";
-        message.innerText = "Login berhasil!";
-        alert("Selamat datang, " + foundUser.username);
-    } else {
-        message.style.color = "red";
-        message.innerText = "Username atau password salah!";
+    getInfo() {
+        return `${this.name}: ${this.description}`;
     }
 }
 
-function resetForm() {
-    document.getElementById("username").value = "";
-    document.getElementById("password").value = "";
-    document.getElementById("message").innerText = "";
+// OBJECTS (Instance dari class)
+const planets = [
+    new Planet("Mercury", "Planet terdekat dengan matahari."),
+    new Planet("Venus", "Planet terpanas di tata surya."),
+    new Planet("Earth", "Planet tempat kehidupan."),
+    new Planet("Mars", "Planet merah yang misterius.")
+];
+
+let index = 0;
+
+// Menampilkan data object ke UI
+function showPlanet() {
+    document.getElementById("planetName").innerText = planets[index].name;
+    document.getElementById("planetDesc").innerText = planets[index].description;
+    document.getElementById("info").innerText = planets[index].getInfo();
 }
+
+// Interaksi UX
+function nextPlanet() {
+    index++;
+    if (index >= planets.length) {
+        index = 0;
+    }
+    showPlanet();
+}
+
+// Load awal
+showPlanet();
