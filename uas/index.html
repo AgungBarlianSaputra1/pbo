@@ -2,23 +2,125 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Galaxy System</title>
+    <title>Galaxy Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== BACKGROUND GALAXY ===== */
+        body {
+            margin: 0;
+            height: 100vh;
+            background: url("https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3")
+                        no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* ===== LOGIN CARD ===== */
+        .login-card {
+            background: rgba(20, 20, 40, 0.75);
+            backdrop-filter: blur(10px);
+            width: 350px;
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 0 30px rgba(150, 100, 255, 0.5);
+            text-align: center;
+        }
+
+        .login-card img {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+
+        .login-card h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-card input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(90deg, #4facfe, #9b59ff);
+            color: white;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🌌 Galaxy Control Center</h1>
-    <p id="info"></p>
+    <div class="login-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616490.png" alt="icon">
+        <h2>Login</h2>
 
-    <div class="card">
-        <h2 id="planetName"></h2>
-        <p id="planetDesc"></p>
-        <button onclick="nextPlanet()">Next Planet</button>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+
+        <button class="btn-login" onclick="loginSystem.login()">Login</button>
+        <button class="btn-cancel" onclick="loginSystem.reset()">Cancel</button>
     </div>
-</div>
 
-<script src="script.js"></script>
+    <script>
+        /* ===== CLASS (OOP) ===== */
+        class User {
+            constructor(username, password) {
+                this.username = username;
+                this.password = password;
+            }
+
+            isValid(inputUser, inputPass) {
+                return this.username === inputUser && this.password === inputPass;
+            }
+        }
+
+        /* ===== OBJECT ===== */
+        const loginSystem = {
+            user: new User("admin", "21anita"),
+
+            login() {
+                const u = document.getElementById("username").value;
+                const p = document.getElementById("password").value;
+
+                if (u === "" || p === "") {
+                    alert("Username dan password wajib diisi");
+                } else if (this.user.isValid(u, p)) {
+                    alert("Login berhasil 🚀");
+                } else {
+                    alert("Username atau password salah ❌");
+                }
+            },
+
+            reset() {
+                document.getElementById("username").value = "";
+                document.getElementById("password").value = "";
+            }
+        };
+    </script>
+
 </body>
 </html>
