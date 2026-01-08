@@ -18,11 +18,11 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        /* ===== LOGIN CARD ===== */
+        /* ===== LOGIN CARD (DEFAULT: LAPTOP) ===== */
         .login-card {
             background: rgba(20, 20, 40, 0.75);
             backdrop-filter: blur(10px);
-            width: 350px;
+            width: 360px;              /* LAPTOP */
             padding: 30px;
             border-radius: 20px;
             color: white;
@@ -70,12 +70,35 @@
         .btn-login:hover {
             opacity: 0.9;
         }
+
+        /* ===== MOBILE MODE ===== */
+        @media (max-width: 600px) {
+            .login-card {
+                width: 90%;           /* MOBILE */
+                padding: 25px;
+                border-radius: 16px;
+            }
+
+            .login-card img {
+                width: 50px;
+            }
+
+            .login-card h2 {
+                font-size: 22px;
+            }
+
+            .btn-login {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div class="login-card">
-        <img src="https://agungbarliansaputra1.github.io/pbo/uas/%E2%80%94Pngtree%E2%80%94image%20of%20planets%20and%20saturn_11085498.png">
+        <img src="https://agungbarliansaputra1.github.io/pbo/uas/%E2%80%94Pngtree%E2%80%94image%20of%20planets%20and%20saturn_11085498.png" alt="Planet">
         <h2>Login</h2>
 
         <input type="text" id="username" placeholder="Username">
@@ -86,7 +109,7 @@
     </div>
 
     <script>
-        /* ===== CLASS (OOP) ===== */
+        /* ===== CLASS (PBO) ===== */
         class User {
             constructor(username, password) {
                 this.username = username;
