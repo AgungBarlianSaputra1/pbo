@@ -2,22 +2,21 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Aplikasi Login</title>
+    <title>Galaxy System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="login-container">
-    <h2>Login</h2>
+<div class="container">
+    <h1>🌌 Galaxy Control Center</h1>
+    <p id="info"></p>
 
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-
-    <button class="btn-login" onclick="login()">Login</button>
-    <button class="btn-cancel" onclick="resetForm()">Cancel</button>
-
-    <p id="message"></p>
+    <div class="card">
+        <h2 id="planetName"></h2>
+        <p id="planetDesc"></p>
+        <button onclick="nextPlanet()">Next Planet</button>
+    </div>
 </div>
 
 <script src="script.js"></script>
