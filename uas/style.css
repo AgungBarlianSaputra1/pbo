@@ -7,65 +7,66 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e, #a1c4fd);
+    background: radial-gradient(circle at top, #1b1f3b, #050510);
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    overflow: hidden;
 }
 
-.login-container {
-    background: white;
-    width: 320px;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+/* Bintang */
+body::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveStars 60s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes moveStars {
+    from { transform: translate(0,0); }
+    to { transform: translate(-200px,-200px); }
+}
+
+.container {
+    position: relative;
     text-align: center;
+    width: 500px;
 }
 
-.login-container h2 {
-    margin-bottom: 20px;
+.container h1 {
+    margin-bottom: 10px;
+    font-size: 32px;
 }
 
-.login-container input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 14px;
+.card {
+    margin-top: 20px;
+    padding: 25px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
-.login-container input:focus {
-    outline: none;
-    border-color: #a1c4fd;
+.card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.btn-login {
-    width: 100%;
-    padding: 12px;
+.card button {
+    margin-top: 15px;
+    padding: 12px 30px;
     border: none;
     border-radius: 25px;
-    background: linear-gradient(to right, #ff758c, #6a85f1);
+    background: linear-gradient(to right, #7f5af0, #2cb67d);
     color: white;
     font-size: 15px;
     cursor: pointer;
 }
 
-.btn-login:hover {
+.card button:hover {
     opacity: 0.9;
-}
-
-.btn-cancel {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 25px;
-    background: #eee;
-    cursor: pointer;
-}
-
-#message {
-    margin-top: 12px;
-    font-size: 14px;
 }
