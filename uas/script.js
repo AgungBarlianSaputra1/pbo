@@ -3,6 +3,10 @@ class User {
         this.username = username;
         this.password = password;
     }
+
+    checkLogin(inputUser, inputPass) {
+        return this.username === inputUser && this.password === inputPass;
+    }
 }
 
 const users = [
@@ -19,9 +23,15 @@ function login() {
         return;
     }
 
-    const valid = users.find(user => user.username === u && user.password === p);
+    const validUser = users.find(user => user.checkLogin(u, p));
 
-    if (valid) {
+    if (validUser) {
+        localStorage.setItem("loginUser", JSON.stringify({
+            username: validUser.username,
+            role: validUser.username === "admin" ? "Administrator" : "User",
+            loginTime: new Date().toLocaleString()
+        }));
+
         alert("Login berhasil!");
     } else {
         alert("Login gagal!");
