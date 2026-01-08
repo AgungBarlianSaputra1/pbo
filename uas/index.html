@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        /* ===== BACKGROUND GALAXY ===== */
         body {
             margin: 0;
             height: 100vh;
@@ -18,7 +17,6 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        /* ===== LOGIN CARD (DEFAULT: LAPTOP) ===== */
         .login-card {
             background: rgba(20, 20, 40, 0.75);
             width: 90%;
@@ -33,10 +31,6 @@
         .login-card img {
             width: 60px;
             margin-bottom: 10px;
-        }
-
-        .login-card h2 {
-            margin-bottom: 20px;
         }
 
         .login-card input {
@@ -66,50 +60,25 @@
             color: #ccc;
             cursor: pointer;
         }
-
-        .btn-login:hover {
-            opacity: 0.9;
-        }
-
-        /* ===== MOBILE MODE ===== */
-        @media (max-width: 600px) {
-            .login-card {
-                width: 90%;           /* MOBILE */
-                padding: 25px;
-                border-radius: 16px;
-            }
-
-            .login-card img {
-                width: 50px;
-            }
-
-            .login-card h2 {
-                font-size: 22px;
-            }
-
-            .btn-login {
-                font-size: 14px;
-                padding: 10px;
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <div class="login-card">
-        <img src="https://agungbarliansaputra1.github.io/pbo/uas/%E2%80%94Pngtree%E2%80%94image%20of%20planets%20and%20saturn_11085498.png" alt="Planet">
-        <h2>Login</h2>
+<div class="login-card">
+    <img src="https://agungbarliansaputra1.github.io/pbo/uas/%E2%80%94Pngtree%E2%80%94image%20of%20planets%20and%20saturn_11085498.png" alt="Planet">
+    <h2>Login</h2>
 
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
 
-        <button class="btn-login" onclick="loginSystem.login()">Login</button>
-        <button class="btn-cancel" onclick="loginSystem.reset()">Cancel</button>
-    </div>
+    <!-- ❌ TIDAK PAKAI onclick -->
+    <button class="btn-login" id="btnLogin">Login</button>
+    <button class="btn-cancel" id="btnCancel">Cancel</button>
+</div>
 
-    <script>
-    /* ===== CLASS (PBO) ===== */
+<script>
+    /* ===== CLASS ===== */
     class User {
         constructor(username, password) {
             this.username = username;
@@ -126,27 +95,28 @@
         user: new User("admin", "Agung"),
 
         login() {
+            console.log("LOGIN DIEKSEKUSI");
+
             const u = document.getElementById("username").value;
             const p = document.getElementById("password").value;
 
             if (u === "" || p === "") {
                 alert("Username dan password wajib diisi");
-            } 
-            else if (this.user.isValid(u, p)) {
+                return;
+            }
 
-                // ✅ TAMBAHAN LOCAL STORAGE (INI YANG KURANG)
+            if (this.user.isValid(u, p)) {
+                console.log("USER VALID");
+
                 localStorage.setItem("loginUser", JSON.stringify({
                     username: u,
                     role: "Administrator",
                     loginTime: new Date().toLocaleString()
                 }));
 
+                console.log("LOCAL STORAGE DISIMPAN");
                 alert("Login berhasil 🚀");
-
-                // opsional redirect
-                // window.location.href = "dashboard.html";
-            } 
-            else {
+            } else {
                 alert("Username atau password salah ❌");
             }
         },
@@ -156,8 +126,14 @@
             document.getElementById("password").value = "";
         }
     };
-</script>
 
+    /* ===== EVENT LISTENER (INI KUNCI) ===== */
+    document.getElementById("btnLogin")
+        .addEventListener("click", () => loginSystem.login());
+
+    document.getElementById("btnCancel")
+        .addEventListener("click", () => loginSystem.reset());
+</script>
 
 </body>
 </html>
