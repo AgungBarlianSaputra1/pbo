@@ -109,41 +109,55 @@
     </div>
 
     <script>
-        /* ===== CLASS (PBO) ===== */
-        class User {
-            constructor(username, password) {
-                this.username = username;
-                this.password = password;
-            }
-
-            isValid(inputUser, inputPass) {
-                return this.username === inputUser && this.password === inputPass;
-            }
+    /* ===== CLASS (PBO) ===== */
+    class User {
+        constructor(username, password) {
+            this.username = username;
+            this.password = password;
         }
 
-        /* ===== OBJECT ===== */
-        const loginSystem = {
-            user: new User("admin", "Agung"),
+        isValid(inputUser, inputPass) {
+            return this.username === inputUser && this.password === inputPass;
+        }
+    }
 
-            login() {
-                const u = document.getElementById("username").value;
-                const p = document.getElementById("password").value;
+    /* ===== OBJECT ===== */
+    const loginSystem = {
+        user: new User("admin", "Agung"),
 
-                if (u === "" || p === "") {
-                    alert("Username dan password wajib diisi");
-                } else if (this.user.isValid(u, p)) {
-                    alert("Login berhasil 🚀");
-                } else {
-                    alert("Username atau password salah ❌");
-                }
-            },
+        login() {
+            const u = document.getElementById("username").value;
+            const p = document.getElementById("password").value;
 
-            reset() {
-                document.getElementById("username").value = "";
-                document.getElementById("password").value = "";
+            if (u === "" || p === "") {
+                alert("Username dan password wajib diisi");
+            } 
+            else if (this.user.isValid(u, p)) {
+
+                // ✅ TAMBAHAN LOCAL STORAGE (INI YANG KURANG)
+                localStorage.setItem("loginUser", JSON.stringify({
+                    username: u,
+                    role: "Administrator",
+                    loginTime: new Date().toLocaleString()
+                }));
+
+                alert("Login berhasil 🚀");
+
+                // opsional redirect
+                // window.location.href = "dashboard.html";
+            } 
+            else {
+                alert("Username atau password salah ❌");
             }
-        };
-    </script>
+        },
+
+        reset() {
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+        }
+    };
+</script>
+
 
 </body>
 </html>
