@@ -72,17 +72,17 @@
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
 
-    <!-- ❌ TIDAK PAKAI onclick -->
     <button class="btn-login" id="btnLogin">Login</button>
     <button class="btn-cancel" id="btnCancel">Cancel</button>
 </div>
 
 <script>
-    /* ===== CLASS ===== */
+    /* ===== CLASS USER ===== */
     class User {
-        constructor(username, password) {
+        constructor(username, password, role) {
             this.username = username;
             this.password = password;
+            this.role = role;
         }
 
         isValid(inputUser, inputPass) {
@@ -90,14 +90,16 @@
         }
     }
 
-    /* ===== OBJECT ===== */
-    const loginSystem = {
-        user: new User("admin", "Agung"),
-        user: new User("user", "AgungBs"),
-        
-        login() {
-            console.log("LOGIN DIEKSEKUSI");
+    /* ===== DATA USERS (ADMIN + USER) ===== */
+    const users = [
+        new User("admin", "Agung", "Administrator"),
+        new User("user", "AgungBs", "User")
+    ];
 
+    /* ===== LOGIN SYSTEM ===== */
+    const loginSystem = {
+
+        login() {
             const u = document.getElementById("username").value;
             const p = document.getElementById("password").value;
 
@@ -106,17 +108,17 @@
                 return;
             }
 
-            if (this.user.isValid(u, p)) {
-                console.log("USER VALID");
+            // 🔍 CARI USER
+            const validUser = users.find(user => user.isValid(u, p));
 
+            if (validUser) {
                 localStorage.setItem("loginUser", JSON.stringify({
-                    username: u,
-                    role: "Administrator",
+                    username: validUser.username,
+                    role: validUser.role,
                     loginTime: new Date().toLocaleString()
                 }));
 
-                console.log("LOCAL STORAGE DISIMPAN");
-                alert("Login berhasil 🚀");
+                alert("Login berhasil 🚀 (" + validUser.role + ")");
             } else {
                 alert("Username atau password salah ❌");
             }
@@ -128,7 +130,7 @@
         }
     };
 
-    /* ===== EVENT LISTENER (INI KUNCI) ===== */
+    /* ===== EVENT LISTENER ===== */
     document.getElementById("btnLogin")
         .addEventListener("click", () => loginSystem.login());
 
