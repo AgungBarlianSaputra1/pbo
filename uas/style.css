@@ -71,24 +71,20 @@ body::before {
     opacity: 0.9;
 }
 
+/* LAPTOP BESAR */
+@media (min-width: 1200px) {
+    .login-card {
+        width: 480px;
+        padding: 40px;
+    }
+}
+
+/* MOBILE */
 @media (max-width: 600px) {
     .login-card {
         width: 90%;
         padding: 25px;
         border-radius: 16px;
     }
-
-    .login-card h2 {
-        font-size: 22px;
-    }
-
-    .login-card input {
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    .btn-login {
-        font-size: 14px;
-        padding: 10px;
-    }
 }
+
