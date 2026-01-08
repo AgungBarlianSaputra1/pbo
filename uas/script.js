@@ -7,7 +7,7 @@ class User {
 
 const users = [
     new User("admin", "Agung"),
-    new User("user", "User")
+    new User("user", "AgungBS")
 ];
 
 function login() {
